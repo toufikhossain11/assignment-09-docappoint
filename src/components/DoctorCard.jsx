@@ -10,7 +10,7 @@ const DoctorCard = () => {
     return (
         <Card
             className="
-                group w-85 rounded-2xl
+                group w-80 rounded-2xl
                 border
                 border-white/10
                 bg-[#111827]/70

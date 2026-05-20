@@ -107,12 +107,10 @@ const DoctorDetailsPage = () => {
 
             {/* Buttons */}
             <div className="mt-4 flex flex-wrap gap-3">
-              <button className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+              <button className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                 Book Appointment
               </button>
-              {/* <button className="rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/10">
-                View Schedule
-              </button> */}
+              
             </div>
           </div>
         </div>

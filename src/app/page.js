@@ -9,7 +9,7 @@ const page = () => {
         <Hero />
        <TopRateDoctor />
        <AboutUs/>
-       <DoctorDetailsPage/>
+       
     </div>
   );
 };

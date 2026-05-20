@@ -13,7 +13,7 @@ const navLinks = [
   },
   {
     name: "All Appointment",
-    path: "/all-appointments",
+    path: "/allAppointments",
   },
   {
     name: "Dashboard",

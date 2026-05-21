@@ -10,20 +10,8 @@ import {
   Star,
 } from "lucide-react";
 
-const DoctorDetailsPage = () => {
-  const doctor = {
-    name: "Dr. Ayesha Rahman",
-    specialty: "Cardiologist",
-    image: "/doctor.jpg",
-    experience: "10 Years",
-    availability: ["09:00 AM - 12:00 PM", "04:00 PM - 07:00 PM"],
-    description:
-      "Experienced cardiologist specializing in heart diseases, preventive care, and patient-centered treatment.",
-    hospital: "Labaid Cardiac Hospital",
-    location: "Dhanmondi, Dhaka",
-    fee: 800,
-  };
-
+const DoctorDetailsPage = ({ doctor }) => {
+ 
   const stats = [
     { value: "12K+", label: "Happy Patients" },
     { value: "98%", label: "Satisfaction Rate" },
@@ -50,8 +38,8 @@ const DoctorDetailsPage = () => {
 
             {/* Badge */}
             <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-1.5 backdrop-blur-xl">
-              <Star size={13} className="fill-yellow-400 text-yellow-400" />
-              <span className="text-xs font-medium text-yellow-300">Top Rated</span>
+              <Star size={13} className="fill-yellow-400 text-yellow-500" />
+              <span className="text-xs font-medium text-yellow-500">{doctor.rating}/5</span>
             </div>
           </div>
 

@@ -8,6 +8,7 @@ const loading = () => {
       <Spinner size="lg"/>
     </div>
         </div>
+
     );
 };
 

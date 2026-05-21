@@ -29,10 +29,10 @@ const DoctorCard = ({ doctor }) => {
             <div className="overflow-hidden p-0">
                 <div className="relative h-[180px] w-full overflow-hidden">
                     <Image
-                        src="/doctor.jpg"
+                        src={doctor.image}
                         alt="Doctor Image"
                         fill
-                        className="object-cover transition-all duration-700 group-hover:scale-110"
+                        className="object-cover transition-all duration-700 group-hover:scale-110 rounded-2xl"
                     />
 
                     {/* Overlay */}
@@ -105,7 +105,7 @@ const DoctorCard = ({ doctor }) => {
                 </div>
 
                 {/* Button */}
-                <Link href="/">
+                <Link href={`/allAppointments/${doctor._id}`}>
                     <button
                         className="
                             rounded-xl

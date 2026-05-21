@@ -4,7 +4,7 @@ import { Search } from 'lucide-react';
 import React from 'react';
 
 const allAppointPage = async () => {
-    const res = await fetch('http://localhost:5000/alldatas');
+    const res = await fetch('http://localhost:5000/allAppointments');
     const data = await res.json();
 
     return (
@@ -72,7 +72,7 @@ const allAppointPage = async () => {
                 </div>
                 <div>
                     {/* <h1 className='sm:hidden text-lg font-semibold'>Total Doctors: 10</h1> */}
-                    <h1 className='hidden sm:block text-lg font-semibold'>Total Doctors: 10</h1>
+                    <h1 className='hidden sm:block text-lg font-semibold'>Total Doctors: {data.length}</h1>
                 </div>
             </div>
 

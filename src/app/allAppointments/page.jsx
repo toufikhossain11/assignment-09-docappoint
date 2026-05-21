@@ -3,17 +3,19 @@ import { Button, Input } from '@heroui/react';
 import { Search } from 'lucide-react';
 import React from 'react';
 
-const allAppointPage = () => {
+const allAppointPage = async () => {
+    const res = await fetch('http://localhost:5000/alldatas');
+    const data = await res.json();
+
     return (
         <div className='mx-auto max-w-6xl py-6 '>
-             <div className='flex items-center flex-col gap-3'>
+            <div className='flex items-center flex-col gap-3'>
                 <h1 className='font-bold text-4xl text-center '>All Doctors</h1>
                 <div className="w-25 h-0.5 bg-sky-500 " />
             </div>
-                <div className="my-10  flex justify-left ">
+            <div className='flex flex-1 justify-between items-center my-10'>
+                <div className="  flex justify-left mx-auto lg:mx-0">
                     <div className="flex w-full max-w-2xl items-center gap-4">
-
-                        {/* Search Input */}
                         <Input
                             type="text"
                             placeholder="Search doctor by name..."
@@ -29,19 +31,20 @@ const allAppointPage = () => {
                             variant="bordered"
                             classNames={{
                                 input:
-                                    "text-white placeholder:text-slate-500 ",
+                                    "text-white placeholder:text-slate-500",
+
                                 inputWrapper:
                                     `
-              h-14
-              border
-              border-cyan-400/30
-              bg-[#111827]/70
-              backdrop-blur-xl
-              hover:border-cyan-400/40
-              focus-within:border-cyan-400/40
-              transition-all
-              duration-300
-            `,
+      h-14
+      border
+      border-white/10
+      bg-[#111827]/70
+      backdrop-blur-xl
+      hover:border-cyan-400
+      focus-within:border-cyan-400
+      transition-all
+      duration-300
+    `,
                             }}
                         />
                         <Button
@@ -67,8 +70,16 @@ const allAppointPage = () => {
                         </Button>
                     </div>
                 </div>
-            <div>
-                <DoctorCard/>
+                <div>
+                    {/* <h1 className='sm:hidden text-lg font-semibold'>Total Doctors: 10</h1> */}
+                    <h1 className='hidden sm:block text-lg font-semibold'>Total Doctors: 10</h1>
+                </div>
+            </div>
+
+            <div className="mx-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {data.map((doctor) => (
+                    <DoctorCard key={doctor.id} doctor={doctor} />
+                ))}
             </div>
         </div>
     );

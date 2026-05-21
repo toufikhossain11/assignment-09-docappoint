@@ -5,7 +5,7 @@ import Link from "next/link";
 import { MapPin, BriefcaseMedical, Star } from "lucide-react";
 import { Card, CardFooter } from "@heroui/react";
 
-const DoctorCard = () => {
+const DoctorCard = ({ doctor }) => {
 
     return (
         <Card
@@ -42,14 +42,14 @@ const DoctorCard = () => {
                     <div className="absolute left-3 top-3 flex items-center gap-1 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-2.5 py-1 backdrop-blur-xl">
                         <Star size={12} className="fill-yellow-400 text-yellow-400" />
                         <span className="text-xs font-medium text-yellow-300">
-                            Top Rated
+                            {doctor.rating} / 5
                         </span>
                     </div>
 
                     {/* Specialty Badge */}
                     <div className="absolute bottom-3 left-3 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-2.5 py-1 backdrop-blur-xl">
                         <p className="text-xs font-medium text-cyan-300">
-                            Cardiologist
+                            {doctor.specialty}
                         </p>
                     </div>
                 </div>
@@ -59,11 +59,10 @@ const DoctorCard = () => {
                     {/* Doctor Name */}
                     <div>
                         <h2 className="text-base font-bold text-white">
-                            Dr. Ayesha Rahman
+                            {doctor.name}
                         </h2>
                         <p className="mt-1 text-xs leading-relaxed text-slate-400">
-                            Experienced specialist dedicated to providing excellent
-                            healthcare and patient-centered treatment.
+                            {doctor.description}
                         </p>
                     </div>
 
@@ -76,7 +75,7 @@ const DoctorCard = () => {
                             </div>
                             <div>
                                 <p className="text-xs text-slate-400">Experience</p>
-                                <h4 className="text-sm font-semibold text-white">2 years</h4>
+                                <h4 className="text-sm font-semibold text-white">{doctor.experience} years </h4>
                             </div>
                         </div>
 
@@ -88,9 +87,9 @@ const DoctorCard = () => {
                             <div>
                                 <p className="text-xs text-slate-400">Hospital</p>
                                 <h4 className="text-sm font-semibold text-white">
-                                    Labaid Cardiac Hospital
+                                    {doctor.hospital}
                                 </h4>
-                                <p className="text-xs text-slate-500">Dhanmondi, Dhaka</p>
+                                <p className="text-xs text-slate-500">{doctor.location}</p>
                             </div>
                         </div>
                     </div>
@@ -102,7 +101,7 @@ const DoctorCard = () => {
                 {/* Fee */}
                 <div>
                     <p className="text-xs text-slate-400">Appointment Fee</p>
-                    <h2 className="text-lg font-bold text-cyan-300">৳ 2000</h2>
+                    <h2 className="text-lg font-bold text-cyan-300">৳ {doctor.fee}</h2>
                 </div>
 
                 {/* Button */}

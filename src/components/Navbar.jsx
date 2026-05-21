@@ -148,7 +148,7 @@ export default function Navbar() {
                       {user.name}
                     </h3>
                     <p className="text-sm text-slate-400">
-                      Logged In
+                      Login
                     </p>
                   </div>
                 </div>

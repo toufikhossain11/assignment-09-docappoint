@@ -14,7 +14,7 @@ const TopRateDoctor = async () => {
             </div>
             <div className="pt-13 space-y-5 lg:space-y-0 flex-col-1 md:flex-2 mx-15 lg:mx-0  lg:flex items-center justify-center gap-7 ">
               {data.map((doctor) => (
-                <DoctorCard key={doctor.id} doctor={doctor} />
+                <DoctorCard key={doctor._id} doctor={doctor} />
               ))}
             </div>
         </div>

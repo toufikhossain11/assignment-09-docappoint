@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
 import { Input, Button } from "@heroui/react";
 import { FaGoogle, FaEnvelope, FaLock } from "react-icons/fa";
 

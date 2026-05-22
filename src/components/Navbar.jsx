@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
 
 const navLinks = [
   {
@@ -24,10 +26,11 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
-  // demo auth state
-  const user = null;
-
+const{ data: session } = authClient.useSession()
+  const user = session?.user;
+const handelLogout = async ()=>{
+        await authClient.signOut();
+    }
   return (
     <header className=" border-b border-white/10 bg-[#0F172A]/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
@@ -65,11 +68,12 @@ export default function Navbar() {
           </ul>
 
           {/* Auth Buttons */}
+          {/* <div>
           {user ? (
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-2 py-1 backdrop-blur-xl">
                 <Image
-                  src={user.image}
+                  src='shawon.png'
                   alt="user"
                   width={42}
                   height={42}
@@ -81,7 +85,7 @@ export default function Navbar() {
                 </span>
               </div>
 
-              <button className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+              <button onClick={handelLogout} className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                 Logout
               </button>
             </div>
@@ -94,21 +98,44 @@ export default function Navbar() {
               </Link>
 
               <Link href="/register">
-                <button className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+                <button  className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                   Register
                 </button>
               </Link>
             </div>
           )}
-        </div>
+          </div> */}
+           
+          
+              <div className="navbar-end gap-4">
+                                  {!user && <div className="flex items-center gap-4">
+              
+                                      <Link href="/login">
+                <button className="rounded-xl border border-cyan-400/30 px-5 py-2 text-sm font-semibold text-cyan-300 transition-all duration-300 hover:bg-cyan-400 hover:text-black">
+                  Login
+                </button>
+              </Link>
+              
+                                      <Link href="/register">
+                <button className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+                  Register
+                </button>
+              </Link>
+                                  </div>}
+                                  {user && <div className="flex items-center gap-4">
+                                      <Avatar className="border border-cyan-400/30 bg-white/5 px-2 py-1 backdrop-blur-xl rounded-full">
+                                          <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy='no-referrer' />
+                                          <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+                                      </Avatar>
+                                      <button onClick={handelLogout} className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#eb252f] to-[#d42506] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+                Logout
+              </button>
+              
+                                  </div>}
+                              </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="rounded-xl border border-white/10 bg-white/5 p-2 text-white lg:hidden"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -132,7 +159,7 @@ export default function Navbar() {
               ))}
             </ul>
 
-            {user ? (
+            {/* {user ? (
               <div className="space-y-4 border-t border-white/10 pt-5">
                 <div className="flex items-center gap-3">
                   <Image
@@ -171,7 +198,7 @@ export default function Navbar() {
                   </button>
                 </Link>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}

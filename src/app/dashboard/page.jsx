@@ -3,18 +3,8 @@ import Image from "next/image";
 import { Card, Button, Input } from "@heroui/react";
 import { FaCalendarCheck, FaEdit, FaTrash, FaUser, FaEnvelope } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import Profile from "@/components/Profile";
 
-const inputStyles = {
-  label: "text-slate-300 text-xs",
-  input: "text-white placeholder:text-slate-500 text-sm",
-  inputWrapper: [
-    "h-11",
-    "border",
-    "border-cyan-400/20",
-    "bg-[#0F172A]/70",
-    "backdrop-blur-xl",
-  ],
-};
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState("bookings");
@@ -161,57 +151,8 @@ const DashboardPage = () => {
 
         {/* ── MY PROFILE ── */}
         {activeTab === "profile" && (
-          <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-[#111827]/70 p-6 backdrop-blur-xl">
-
-            <div className="flex items-center gap-5">
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-cyan-400/30">
-                <Image src="/user.jpg" alt="user" fill className="object-cover" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-white">Toufik Hossain</h2>
-                <p className="text-xs text-slate-400">Patient Dashboard Profile</p>
-              </div>
-            </div>
-
-            <div className="mt-5 grid gap-3">
-              <Input
-                label="Full Name"
-                labelPlacement="outside"
-                placeholder="Enter your name"
-                defaultValue="Toufik Hossain"
-                startContent={<FaUser className="text-cyan-300" size={13} />}
-                radius="lg"
-                variant="bordered"
-                classNames={inputStyles}
-              />
-              <Input
-                label="Email"
-                labelPlacement="outside"
-                placeholder="Enter your email"
-                defaultValue="toufik@gmail.com"
-                isReadOnly
-                startContent={<FaEnvelope className="text-cyan-300" size={13} />}
-                radius="lg"
-                variant="bordered"
-                classNames={inputStyles}
-              />
-              <Input
-                label="Photo URL"
-                labelPlacement="outside"
-                placeholder="Enter photo URL"
-                defaultValue="https://example.com/user.jpg"
-                radius="lg"
-                variant="bordered"
-                classNames={inputStyles}
-              />
-              <Button
-                radius="lg"
-                className="mt-2 h-11 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
-              >
-                Update Profile
-              </Button>
-            </div>
-          </div>
+          <Profile />
+          
         )}
 
       </div>

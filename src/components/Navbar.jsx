@@ -26,22 +26,22 @@ const navLinks = [
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-const{ data: session } = authClient.useSession()
+  const { data: session } = authClient.useSession()
   const user = session?.user;
-const handelLogout = async ()=>{
-        await authClient.signOut();
-    }
+  const handelLogout = async () => {
+    await authClient.signOut();
+  }
   return (
     <header className=" border-b border-white/10 bg-[#0F172A]/80 backdrop-blur-xl">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         {/* Logo */}
         <Link href="/">
-            <Image
-              src="/logo.png"
-              alt="DocAppoint Logo"
-              width={200}
-              height={100}
-            />
+          <Image
+            src="/logo.png"
+            alt="DocAppoint Logo"
+            width={200}
+            height={100}
+          />
         </Link>
 
         {/* Desktop Menu */}
@@ -51,11 +51,10 @@ const handelLogout = async ()=>{
               <li key={link.path}>
                 <Link
                   href={link.path}
-                  className={`relative text-sm font-medium transition-all duration-300 ${
-                    pathname === link.path
+                  className={`relative text-sm font-medium transition-all duration-300 ${pathname === link.path
                       ? "text-[#38BDF8]"
                       : "text-slate-300 hover:text-cyan-300"
-                  }`}
+                    }`}
                 >
                   {link.name}
 
@@ -105,39 +104,35 @@ const handelLogout = async ()=>{
             </div>
           )}
           </div> */}
-           
-          
-              <div className="navbar-end gap-4">
-                                  {!user && <div className="flex items-center gap-4">
-              
-                                      <Link href="/login">
+
+
+          <div className="navbar-end gap-4">
+            {!user && <div className="flex items-center gap-4">
+
+              <Link href="/login">
                 <button className="rounded-xl border border-cyan-400/30 px-5 py-2 text-sm font-semibold text-cyan-300 transition-all duration-300 hover:bg-cyan-400 hover:text-black">
                   Login
                 </button>
               </Link>
-              
-                                      <Link href="/register">
+
+              <Link href="/register">
                 <button className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                   Register
                 </button>
               </Link>
-                                  </div>}
-                                  {user && <div className="flex items-center gap-4">
-                                      <Avatar className="border border-cyan-400/30 bg-white/5 px-2 py-1 backdrop-blur-xl rounded-full">
-                                          <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy='no-referrer' />
-                                          <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
-                                      </Avatar>
-                                      <button onClick={handelLogout} className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#eb252f] to-[#d42506] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+            </div>}
+            {user && <div className="flex items-center gap-4">
+              <Avatar className="border border-cyan-400/30 bg-white/5 px-2 py-1 backdrop-blur-xl rounded-full">
+                <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy='no-referrer' />
+                <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
+              </Avatar>
+              <button onClick={handelLogout} className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#eb252f] to-[#d42506] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                 Logout
               </button>
-              
-                                  </div>}
-                              </div>
 
-
+            </div>}
+          </div>
         </div>
-      </nav>
-
       {/* Mobile Menu */}
       {isOpen && (
         <div className="border-t border-white/10 bg-[#0F172A] lg:hidden">
@@ -147,11 +142,10 @@ const handelLogout = async ()=>{
                 <li key={link.path}>
                   <Link
                     href={link.path}
-                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${
-                      pathname === link.path
+                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${pathname === link.path
                         ? "bg-cyan-500/10 text-cyan-300"
                         : "text-slate-300 hover:bg-white/5"
-                    }`}
+                      }`}
                   >
                     {link.name}
                   </Link>
@@ -159,7 +153,7 @@ const handelLogout = async ()=>{
               ))}
             </ul>
 
-            {/* {user ? (
+            {user ? (
               <div className="space-y-4 border-t border-white/10 pt-5">
                 <div className="flex items-center gap-3">
                   <Image
@@ -198,10 +192,11 @@ const handelLogout = async ()=>{
                   </button>
                 </Link>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       )}
+       </nav>
     </header>
   );
 }

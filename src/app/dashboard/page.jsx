@@ -1,9 +1,8 @@
-"use client";
-
-import { useState } from "react";
+'use client';
 import Image from "next/image";
 import { Card, Button, Input } from "@heroui/react";
 import { FaCalendarCheck, FaEdit, FaTrash, FaUser, FaEnvelope } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 const inputStyles = {
   label: "text-slate-300 text-xs",
@@ -19,6 +18,24 @@ const inputStyles = {
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState("bookings");
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/bookings');
+        const data = await res.json();
+        setBookings(data);
+      } catch (err) {
+        console.error("Failed to fetch bookings:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBookings();
+  }, []);
 
   return (
     <section className="min-h-screen bg-[#0B1120] px-4 py-10">
@@ -51,75 +68,101 @@ const DashboardPage = () => {
 
         {/* ── MY BOOKINGS ── */}
         {activeTab === "bookings" && (
-          <div className="grid gap-4 lg:grid-cols-2">
-            {[1, 2].map((item) => (
-              <Card
-                key={item}
-                className="rounded-2xl border border-white/10 bg-[#111827]/70 backdrop-blur-xl"
-              >
-                <div className="p-4">
-                  <div className="flex gap-4">
+          <>
+            {loading ? (
+              <div className="flex items-center justify-center py-20">
+                <p className="text-slate-400 text-sm animate-pulse">Loading bookings...</p>
+              </div>
+            ) : bookings.length === 0 ? (
+              <div className="flex items-center justify-center py-20">
+                <p className="text-slate-500 text-sm">No bookings found.</p>
+              </div>
+            ) : (
+              <div className="grid gap-4 lg:grid-cols-2">
+                {bookings.map((booking) => (
+                  <Card
+                    key={booking._id || booking.id}
+                    className="rounded-2xl border border-white/10 bg-[#111827]/70 backdrop-blur-xl"
+                  >
+                    <div className="p-4">
+                      <div className="flex gap-4">
 
-                    {/* Doctor Image */}
-                    <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl">
-                      <Image src="/doctor.jpg" alt="doctor" fill className="object-cover" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-2">
-                        <div>
-                          <h2 className="text-base font-bold text-white">Dr. Ayesha Rahman</h2>
-                          <p className="text-xs text-cyan-300">Cardiologist</p>
+                        {/* Doctor Image */}
+                        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl">
+                          <Image
+                            src={booking.doctorImage || "/doctor.jpg"}
+                            alt="doctor"
+                            fill
+                            className="object-cover"
+                          />
                         </div>
-                        <span className="shrink-0 rounded-full bg-cyan-500/10 px-2.5 py-0.5 text-xs text-cyan-300">
-                          Confirmed
-                        </span>
-                      </div>
 
-                      {/* Appointment Info */}
-                      <div className="mt-2 space-y-1">
-                        <div className="flex items-center gap-2 text-slate-300">
-                          <FaCalendarCheck size={12} className="text-cyan-300" />
-                          <p className="text-xs">12 May 2026 — 10:30 AM</p>
+                        {/* Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-start justify-between gap-2">
+                            <div>
+                              <h2 className="text-base font-bold text-white">
+                                {booking.doctorName || "Unknown Doctor"}
+                              </h2>
+                              <p className="text-xs text-cyan-300">
+                                {booking.doctorSpecialty || "Specialist"}
+                              </p>
+                            </div>
+                            <span className="shrink-0 rounded-full bg-cyan-500/10 px-2.5 py-0.5 text-xs text-cyan-300">
+                              {booking.status || "Confirmed"}
+                            </span>
+                          </div>
+
+                          {/* Info */}
+                          <div className="mt-2 space-y-1">
+                            <div className="flex items-center gap-2 text-slate-300">
+                              <FaCalendarCheck size={12} className="text-cyan-300" />
+                              <p className="text-xs">
+                                {booking.date || "N/A"} — {booking.time || ""}
+                              </p>
+                            </div>
+                            <p className="text-xs text-slate-400">
+                              Hospital: {booking.hospital || "N/A"}
+                            </p>
+                            <p className="text-xs text-slate-400">
+                              Patient: {booking.userName || "N/A"}
+                            </p>
+                          </div>
+
+                          {/* Buttons */}
+                          <div className="mt-3 flex gap-2">
+                            <Button
+                              size="sm"
+                              radius="lg"
+                              className="bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-xs font-semibold text-white"
+                              startContent={<FaEdit size={11} />}
+                            >
+                              Update
+                            </Button>
+                            <Button
+                              size="sm"
+                              radius="lg"
+                              variant="bordered"
+                              className="border-red-500/30 text-xs text-red-400 hover:bg-red-500/10"
+                              startContent={<FaTrash size={11} />}
+                            >
+                              Delete
+                            </Button>
+                          </div>
                         </div>
-                        <p className="text-xs text-slate-400">Hospital: Labaid Cardiac Hospital</p>
-                        <p className="text-xs text-slate-400">Patient: Rahim Uddin</p>
-                      </div>
-
-                      {/* Buttons */}
-                      <div className="mt-3 flex gap-2">
-                        <Button
-                          size="sm"
-                          radius="lg"
-                          className="bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-xs font-semibold text-white"
-                          startContent={<FaEdit size={11} />}
-                        >
-                          Update
-                        </Button>
-                        <Button
-                          size="sm"
-                          radius="lg"
-                          variant="bordered"
-                          className="border-red-500/30 text-xs text-red-400 hover:bg-red-500/10"
-                          startContent={<FaTrash size={11} />}
-                        >
-                          Delete
-                        </Button>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                  </Card>
+                ))}
+              </div>
+            )}
+          </>
         )}
 
         {/* ── MY PROFILE ── */}
         {activeTab === "profile" && (
           <div className="mx-auto max-w-2xl rounded-3xl border border-white/10 bg-[#111827]/70 p-6 backdrop-blur-xl">
 
-            {/* Profile Top */}
             <div className="flex items-center gap-5">
               <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border-4 border-cyan-400/30">
                 <Image src="/user.jpg" alt="user" fill className="object-cover" />
@@ -130,7 +173,6 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            {/* Form */}
             <div className="mt-5 grid gap-3">
               <Input
                 label="Full Name"
@@ -162,7 +204,6 @@ const DashboardPage = () => {
                 variant="bordered"
                 classNames={inputStyles}
               />
-
               <Button
                 radius="lg"
                 className="mt-2 h-11 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"

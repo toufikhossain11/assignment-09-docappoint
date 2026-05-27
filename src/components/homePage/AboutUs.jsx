@@ -31,7 +31,7 @@ const AboutUs = () => {
         <section className='max-w-7xl mx-auto py-2'>
 
             <div className='flex items-center flex-col gap-3'>
-                <h1 className='font-bold text-4xl text-center '>About Us</h1>
+                <h1 className='font-bold text-4xl text-center text-cyan-300'>About Us</h1>
                 <div className="w-25 h-0.5 bg-sky-500 " />
             </div>
 

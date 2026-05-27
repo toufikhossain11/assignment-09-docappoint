@@ -1,16 +1,16 @@
 import DoctorCard from '@/components/DoctorCard';
 import { Button, Input } from '@heroui/react';
 import { Search } from 'lucide-react';
-import React from 'react';
+
 
 const allAppointPage = async () => {
     const res = await fetch('http://localhost:5000/allAppointments');
     const data = await res.json();
-
+    console.log('all data',data);
     return (
         <div className='mx-auto max-w-6xl py-6 '>
             <div className='flex items-center flex-col gap-3'>
-                <h1 className='font-bold text-4xl text-center '>All Doctors</h1>
+                <h1 className='font-bold text-4xl text-center text-cyan-300'>All Doctors</h1>
                 <div className="w-25 h-0.5 bg-sky-500 " />
             </div>
             <div className='flex flex-1 justify-between items-center my-10'>
@@ -72,7 +72,7 @@ const allAppointPage = async () => {
                 </div>
                 <div>
                     {/* <h1 className='sm:hidden text-lg font-semibold'>Total Doctors: 10</h1> */}
-                    <h1 className='hidden sm:block text-lg font-semibold'>Total Doctors: {data.length}</h1>
+                    <h1 className='hidden sm:block text-lg font-semibold text-white'>Total Doctors: {data.length}</h1>
                 </div>
             </div>
 

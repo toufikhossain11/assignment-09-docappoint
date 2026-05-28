@@ -4,6 +4,7 @@ import { Card, Button, Input } from "@heroui/react";
 import { FaCalendarCheck, FaEdit, FaTrash, FaUser, FaEnvelope } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import Profile from "@/components/Profile";
+import { DeleteBtn } from "@/components/DeleteBtn";
 
 
 const DashboardPage = () => {
@@ -124,20 +125,12 @@ const DashboardPage = () => {
                             <Button
                               size="sm"
                               radius="lg"
-                              className="bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-xs font-semibold text-white"
+                              className="rounded-xl bg-[#2563EB] px-2 text-[14px] text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
                               startContent={<FaEdit size={11} />}
                             >
                               Update
                             </Button>
-                            <Button
-                              size="sm"
-                              radius="lg"
-                              variant="bordered"
-                              className="border-red-500/30 text-xs text-red-400 hover:bg-red-500/10"
-                              startContent={<FaTrash size={11} />}
-                            >
-                              Delete
-                            </Button>
+                            <DeleteBtn bookingId={booking._id} />
                           </div>
                         </div>
                       </div>

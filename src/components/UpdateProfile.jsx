@@ -97,10 +97,13 @@ export function UpdateProfile() {
   return (
     <>
       {/* Trigger Button */}
+      {/* <button onPress={() => setIsOpen(true)} className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+                Update Profile
+              </button> */}
       <Button
         onPress={() => setIsOpen(true)}
         radius="lg"
-        className="h-11 bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-sm font-semibold text-white shadow-lg shadow-cyan-500/20"
+        className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105"
       >
         Update Profile
       </Button>
@@ -167,17 +170,20 @@ export function UpdateProfile() {
                   onPress={() => setIsOpen(false)}
                   variant="bordered"
                   radius="lg"
-                  className="border-white/10 text-slate-400 hover:bg-white/5"
+                  className=" text-red-500 hover:bg-white/5"
                 >
                   Cancel
                 </Button>
-                <Button
+                <button type="submit" className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+                Save Changes
+              </button>
+                {/* <Button
                   type="submit"
                   radius="lg"
-                  className="bg-gradient-to-r from-[#2563EB] to-[#06B6D4] font-semibold text-white"
+                  className="bg-gradient-to-r from-[#2563EB] to-[#06B6D4] font-semibold text-white mx-20 rotate-2xl"
                 >
                   Save Changes
-                </Button>
+                </Button> */}
               </div>
             </form>
           </div>

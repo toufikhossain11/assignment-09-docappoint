@@ -10,7 +10,7 @@ import {
   Star,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import toast from "react-hot-toast";
+import { BookingDialog } from "./BookingDiolog";
 // import { date } from "better-auth";
 
 const DoctorDetailsPage = ({ doctor }) => {
@@ -18,26 +18,26 @@ const DoctorDetailsPage = ({ doctor }) => {
    const { data: session } = authClient.useSession()
     const user = session?.user;
   
-  const handleBookAppointment = async () => {
-    const bookingData = {
-      doctorId: doctor?._id,
-      doctorName: doctor?.name,
-      doctorSpecialty: doctor?.specialty,
-      doctorFee: doctor?.fee,
-      doctorImage: doctor?.image,
-      hospital: doctor?.hospital,
-      date: new Date().toISOString(),
-      userId: user?.id,
-      userName: user?.name,
-    };
-    const res = await fetch("http://localhost:5000/bookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(bookingData),
-    });
-    const data = await res.json();
-    toast.success("Appointment booked successfully!");
-  }
+  // const handleBookAppointment = async () => {
+  //   const bookingData = {
+  //     doctorId: doctor?._id,
+  //     doctorName: doctor?.name,
+  //     doctorSpecialty: doctor?.specialty,
+  //     doctorFee: doctor?.fee,
+  //     doctorImage: doctor?.image,
+  //     hospital: doctor?.hospital,
+  //     date: new Date().toISOString(),
+  //     userId: user?.id,
+  //     userName: user?.name,
+  //   };
+  //   const res = await fetch("http://localhost:5000/bookings", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(bookingData),
+  //   });
+  //   const data = await res.json();
+  //   toast.success("Appointment booked successfully!");
+  // }
 
   const stats = [
     { value: "12K+", label: "Happy Patients" },
@@ -122,10 +122,19 @@ const DoctorDetailsPage = ({ doctor }) => {
 
             {/* Buttons */}
             <div className="mt-4 flex flex-wrap gap-3">
-              <button onClick={handleBookAppointment} className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
+              {/* <button onClick={handleBookAppointment} className="rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                 Book Appointment
-              </button>
-              
+              </button> */}
+              <BookingDialog
+  doctor={{
+    name: doctor.name,
+    image: doctor.image,
+    specialty: doctor.specialty,
+    hospital: doctor.hospital,
+    fee: doctor.fee,
+  }}
+  userEmail={session?.user?.email}
+/>
             </div>
           </div>
         </div>

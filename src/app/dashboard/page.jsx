@@ -116,7 +116,7 @@ const DashboardPage = () => {
                               Hospital: {booking.hospital || "N/A"}
                             </p>
                             <p className="text-xs text-slate-400">
-                              Patient: {booking.userName || "N/A"}
+                              Patient: {booking.patientName || "N/A"}
                             </p>
                           </div>
 

@@ -7,21 +7,31 @@ import { FaTrash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { MdWarningAmber } from "react-icons/md";
 
-export function DeleteBtn({ bookingId }) {
+export function DeleteBtn({ bookingId , onDeleted}) {
   const [isOpen, setIsOpen] = useState(false);
+  // const handleDelete = async () => {
+  //   if (bookingId) {
+  //     const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+  //       method: "DELETE",
+  //       headers: { "Content-Type": "application/json" },
+  //     });
+  //     const data = await res.json();
+  //     toast.success("Appointment deleted successfully!")
+  //   } else {
+  //     toast.error("No bookingId provided for deletion.");
+  //   }
+  //   window.location.reload();
+  //   setIsOpen(false);
+  // };
   const handleDelete = async () => {
-    if (bookingId) {
-      const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      });
-      const data = await res.json();
-      toast.success("Appointment deleted successfully!")
-    } else {
-      toast.error("No bookingId provided for deletion.");
+    const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      toast.success("Booking deleted!");
+      if (onDeleted) onDeleted(bookingId); // ← এই লাইন যোগ করো
+      setIsOpen(false);
     }
-    window.location.reload();
-    setIsOpen(false);
   };
 
   return (

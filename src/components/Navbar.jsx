@@ -53,8 +53,8 @@ export default function Navbar() {
                 <Link
                   href={link.path}
                   className={`relative text-sm font-medium transition-all duration-300 ${pathname === link.path
-                      ? "text-[#38BDF8]"
-                      : "text-slate-300 hover:text-cyan-300"
+                    ? "text-[#38BDF8]"
+                    : "text-slate-300 hover:text-cyan-300"
                     }`}
                 >
                   {link.name}
@@ -123,10 +123,30 @@ export default function Navbar() {
               </Link>
             </div>}
             {user && <div className="flex items-center gap-4">
-              <Avatar className="border border-cyan-400/30 bg-white/5 px-2 py-1 backdrop-blur-xl rounded-full">
-                <Avatar.Image alt="John Doe" src={user?.image} referrerPolicy='no-referrer' />
+
+              <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-cyan-400/40">
+                {user.image ? (
+                  // image থাকলে → image দেখাবে
+                  <Image
+                    src={user.image}
+                    alt={user.name}
+                    fill
+                    sizes="36px"
+                    className="object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  // image না থাকলে → নামের প্রথম অক্ষর দেখাবে
+                  <div className="flex h-full w-full items-center justify-center bg-cyan-500/10 text-sm font-bold text-cyan-300">
+                    {user.name?.[0]?.toUpperCase() || "?"}
+                  </div>
+                )}
+              </div>
+
+              {/* <Avatar className="absolute inset-0 w-full h-full border border-cyan-400/30 bg-white/5 px-2 py-1 backdrop-blur-xl rounded-full">
+                <Avatar.Image className="relative " alt="John Doe" src={user?.image} referrerPolicy='no-referrer' />
                 <Avatar.Fallback>{user?.name[0]}</Avatar.Fallback>
-              </Avatar>
+              </Avatar> */}
               <button onClick={handelLogout} className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-[#eb252f] to-[#d42506] px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-105">
                 Logout
               </button>
@@ -134,70 +154,81 @@ export default function Navbar() {
             </div>}
           </div>
         </div>
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="border-t border-white/10 bg-[#0F172A] lg:hidden">
-          <div className="space-y-5 px-6 py-6">
-            <ul className="space-y-4">
-              {navLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    href={link.path}
-                    className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${pathname === link.path
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="border-t border-white/10 bg-[#0F172A] lg:hidden">
+            <div className="space-y-5 px-6 py-6">
+              <ul className="space-y-4">
+                {navLinks.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      href={link.path}
+                      className={`block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-300 ${pathname === link.path
                         ? "bg-cyan-500/10 text-cyan-300"
                         : "text-slate-300 hover:bg-white/5"
-                      }`}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                        }`}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-            {user ? (
-              <div className="space-y-4 border-t border-white/10 pt-5">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src={user.image}
-                    alt="user"
-                    width={45}
-                    height={45}
-                    className="rounded-full border border-cyan-400/30"
-                  />
+              {user ? (
+                <div className="space-y-4 border-t border-white/10 pt-5">
+                  <div className="flex items-center gap-3">
+                    <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full border-2 border-cyan-400/40">
+                      {user.image ? (
+                        // image থাকলে → image দেখাবে
+                        <Image
+                          src={user.image}
+                          alt={user.name}
+                          fill
+                          sizes="36px"
+                          className="object-cover"
+                          referrerPolicy="no-referrer"
+                        />
+                      ) : (
+                        // image না থাকলে → নামের প্রথম অক্ষর দেখাবে
+                        <div className="flex h-full w-full items-center justify-center bg-cyan-500/10 text-sm font-bold text-cyan-300">
+                          {user.name?.[0]?.toUpperCase() || "?"}
+                        </div>
+                      )}
+                    </div>
 
-                  <div>
-                    <h3 className="font-semibold text-white">
-                      {user.name}
-                    </h3>
-                    <p className="text-sm text-slate-400">
-                      Login
-                    </p>
+                    <div>
+                      <h3 className="font-semibold text-white">
+                        {user.name}
+                      </h3>
+                      <p className="text-sm text-slate-400">
+                        Login
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <button className="w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-3 font-semibold text-white">
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3 border-t border-white/10 pt-5">
-                <Link href="/login">
-                  <button className="w-full rounded-xl border border-cyan-400/30 px-5 py-3 font-semibold text-cyan-300">
-                    Login
-                  </button>
-                </Link>
-
-                <Link href="/register">
                   <button className="w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-3 font-semibold text-white">
-                    Register
+                    Logout
                   </button>
-                </Link>
-              </div>
-            )}
+                </div>
+              ) : (
+                <div className="flex flex-col gap-3 border-t border-white/10 pt-5">
+                  <Link href="/login">
+                    <button className="w-full rounded-xl border border-cyan-400/30 px-5 py-3 font-semibold text-cyan-300">
+                      Login
+                    </button>
+                  </Link>
+
+                  <Link href="/register">
+                    <button className="w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] px-5 py-3 font-semibold text-white">
+                      Register
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      )}
-       </nav>
+        )}
+      </nav>
     </header>
   );
 }

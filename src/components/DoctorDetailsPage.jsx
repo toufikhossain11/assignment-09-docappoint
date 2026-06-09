@@ -17,27 +17,6 @@ const DoctorDetailsPage = ({ doctor }) => {
 
    const { data: session } = authClient.useSession()
     const user = session?.user;
-  
-  // const handleBookAppointment = async () => {
-  //   const bookingData = {
-  //     doctorId: doctor?._id,
-  //     doctorName: doctor?.name,
-  //     doctorSpecialty: doctor?.specialty,
-  //     doctorFee: doctor?.fee,
-  //     doctorImage: doctor?.image,
-  //     hospital: doctor?.hospital,
-  //     date: new Date().toISOString(),
-  //     userId: user?.id,
-  //     userName: user?.name,
-  //   };
-  //   const res = await fetch("http://localhost:5000/bookings", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(bookingData),
-  //   });
-  //   const data = await res.json();
-  //   toast.success("Appointment booked successfully!");
-  // }
 
   const stats = [
     { value: "12K+", label: "Happy Patients" },

@@ -16,37 +16,16 @@ const allAppointPage = async () => {
             <div className='flex flex-1 justify-between items-center my-10'>
                 <div className="  flex justify-left mx-auto lg:mx-0">
                     <div className="flex w-full max-w-2xl items-center gap-4">
-                        <Input
-                            type="text"
-                            placeholder="Search doctor by name..."
-                            //   value={searchText}
-                            //   onChange={(e) => setSearchText(e.target.value)}
-                            startContent={
-                                <Search
-                                    size={18}
-                                    className="text-cyan-300 "
-                                />
-                            }
-                            radius="full"
-                            variant="bordered"
-                            classNames={{
-                                input:
-                                    "text-white placeholder:text-slate-500",
-
-                                inputWrapper:
-                                    `
-      h-14
-      border
-      border-white/10
-      bg-[#111827]/70
-      backdrop-blur-xl
-      hover:border-cyan-400
-      focus-within:border-cyan-400
-      transition-all
-      duration-300
-    `,
-                            }}
-                        />
+                       <Input
+  placeholder="Search doctor by name..."
+  radius="full"
+  variant="bordered"
+  classNames={{
+    input: "text-white",
+    inputWrapper:
+      "h-14 bg-[#111827] border-2 border-cyan-400",
+  }}
+/>
                         <Button
                             radius="full"
                             className="

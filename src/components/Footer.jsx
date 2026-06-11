@@ -6,23 +6,15 @@ const footerLinks = [
     title: "Useful Links",
     links: ["Home", "About us", "Services", "Terms of service", "Privacy policy"],
   },
+  
+ 
   {
     title: "Our Services",
-    links: ["Web Design", "Web Development", "Product Management", "Marketing", "Graphic Design"],
+    links: ["Healthcare", "24/7 Customer Support", "Telemedicine", "Diagnostic Services", "Emergency Care"],
   },
   {
-    title: "Hic solutasetp",
-    links: [
-      "Molestiae accusamus iure",
-      "Excepturi dignissimos",
-      "Suscipit distinctio",
-      "Dilecta",
-      "Sit quas consectetur",
-    ],
-  },
-  {
-    title: "Nobis illum",
-    links: ["Ipsam", "Laudantium dolorum", "Dinara", "Trodales", "Flexo"],
+    title: "Our Departments",
+    links: ["Cardiology", "Neurology", "Pediatrics", "Orthopedics", "Oncology"],
   },
 ];
 
@@ -102,7 +94,7 @@ export default function Footer() {
 
         {/* Link Columns */}
         {footerLinks.map((col) => (
-          <div key={col.title}>
+          <div className="ml-10" key={col.title}>
             <h4 className="text-base font-semibold text-white mb-3">{col.title}</h4>
             <div className="w-7 h-0.5 bg-sky-500 mb-4" />
             <ul className="space-y-2.5">

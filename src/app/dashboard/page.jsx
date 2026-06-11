@@ -8,7 +8,21 @@ import { useState, useEffect } from "react";
 import Profile from "@/components/Profile";
 import { DeleteBtn } from "@/components/DeleteBtn";
 import { UpdateBooking } from "@/components/UpdateBookings";
+import { authClient } from "@/lib/auth-client";
 
+// const authFetch = async (url, options = {}) => {
+//   const { data } = await authClient.getSession();
+//   const token = data?.session?.token;
+//  console.log("Auth token:", token);
+//   return fetch(url, {
+//     ...options,
+//     headers: {
+//       "Content-Type": "application/json",
+//       ...(token ? { Authorization: `Bearer ${token}` } : {}),
+//       ...options.headers,
+//     },
+//   });
+// };
 
 const DashboardPage = () => {
   const [activeTab, setActiveTab] = useState("bookings");

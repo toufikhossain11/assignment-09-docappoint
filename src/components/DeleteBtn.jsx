@@ -9,27 +9,14 @@ import { MdWarningAmber } from "react-icons/md";
 
 export function DeleteBtn({ bookingId , onDeleted}) {
   const [isOpen, setIsOpen] = useState(false);
-  // const handleDelete = async () => {
-  //   if (bookingId) {
-  //     const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
-  //       method: "DELETE",
-  //       headers: { "Content-Type": "application/json" },
-  //     });
-  //     const data = await res.json();
-  //     toast.success("Appointment deleted successfully!")
-  //   } else {
-  //     toast.error("No bookingId provided for deletion.");
-  //   }
-  //   window.location.reload();
-  //   setIsOpen(false);
-  // };
+
   const handleDelete = async () => {
     const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
       method: "DELETE",
     });
     if (res.ok) {
       toast.success("Booking deleted!");
-      if (onDeleted) onDeleted(bookingId); // ← এই লাইন যোগ করো
+      if (onDeleted) onDeleted(bookingId);
       setIsOpen(false);
     }
   };
@@ -55,7 +42,7 @@ export function DeleteBtn({ bookingId , onDeleted}) {
           onClick={() => setIsOpen(false)}
         >
           <div
-            className="w-full max-w-sm rounded-3xl border border-white/10 bg-[#111827] shadow-2xl"
+            className="w-full max-w-sm rounded-3xl border border-white/10 bg-white shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -63,10 +50,10 @@ export function DeleteBtn({ bookingId , onDeleted}) {
               <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/10">
                 <MdWarningAmber size={28} className="text-red-400" />
               </div>
-              <h2 className="text-lg font-bold text-white">Delete permanently?</h2>
-              <p className="mt-2 text-sm text-slate-400">
+              <h2 className="text-lg font-bold text-gray-950">Delete permanently?</h2>
+              <p className="mt-2 text-sm text-gray-950/80">
                 This will permanently delete this booking and all of its data.{" "}
-                <span className="font-semibold text-white">This action cannot be undone.</span>
+                <span className="font-semibold text-gray-950">This action cannot be undone.</span>
               </p>
             </div>
 

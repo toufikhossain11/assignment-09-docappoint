@@ -5,7 +5,7 @@ import DoctorCard from "../DoctorCard";
 const TopRateDoctor = async () => {
     const  res = await fetch('http://localhost:5000/datas');
     const data = await res.json();
-    console.log(data);
+    // console.log(data);
     return (
         <div className='max-w-7xl mx-auto py-5 px-4'>
             <div className='flex items-center flex-col gap-3'>

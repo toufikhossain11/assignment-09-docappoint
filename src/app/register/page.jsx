@@ -1,39 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { Input, Button, Form } from "@heroui/react";
 import { FaGoogle, FaEnvelope, FaLock, FaUser, FaImage } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
-const inputStyles = {
-  label: "text-slate-300 text-xs pb-0.5",
-  input: "text-white placeholder:text-slate-500 text-sm",
-  inputWrapper: [
-    "h-11",
-    "!border",
-    "!border-cyan-400/30",
-    "bg-[#0F172A]",
-    "hover:!border-cyan-400/60",
-    "focus-within:!border-cyan-400",
-    "transition-all",
-    "duration-300",
-    "rounded-xl",
-  ],
-  errorMessage: "text-red-400 text-xs mt-0.5",
-  description: "text-slate-500 text-xs mt-0.5",
-};
 
 const RegisterForm = () => {
   const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const image = e.target.image.value;
+    const name     = e.target.name.value;
+    const email    = e.target.email.value;
+    const image    = e.target.image.value;
     const password = e.target.password.value;
 
     const { error } = await authClient.signUp.email(
@@ -44,20 +24,19 @@ const RegisterForm = () => {
         onError: (ctx) => alert(ctx.error.message),
       }
     );
-
     if (!error) router.push("/login");
   };
 
   const handleGoogleRegister = async () => {
-    await authClient.signIn.social({
-      provider: "google",
-      callbackURL: "/login",
-    });
+    await authClient.signIn.social({ provider: "google", callbackURL: "/login" });
   };
+
+  const fieldClass = "flex h-11 items-center gap-2 rounded-xl border border-cyan-400/20 bg-[#0F172A]/70 px-3 backdrop-blur-xl transition-all focus-within:border-cyan-400 hover:border-cyan-400/40";
+  const inputClass = "w-full bg-transparent text-sm text-white outline-none placeholder:text-slate-500";
+  const labelClass = "text-xs text-slate-300";
 
   return (
     <section className="flex min-h-screen items-center justify-center bg-[#0B1120] px-4">
-
       <div className="w-full max-w-sm rounded-3xl border border-cyan-400/20 bg-[#111827]/70 p-6 shadow-2xl shadow-cyan-500/10 backdrop-blur-2xl">
 
         {/* Header */}
@@ -67,95 +46,57 @@ const RegisterForm = () => {
             <p className="text-xs font-medium tracking-wide text-cyan-300">CREATE ACCOUNT</p>
           </div>
           <h1 className="text-3xl font-extrabold text-white">Register</h1>
-          <p className="mt-2 text-xs text-slate-400">
-            Create your account to book appointments easily.
-          </p>
+          <p className="mt-2 text-xs text-slate-400">Create your account to book appointments easily.</p>
         </div>
 
         {/* Form */}
-        <Form className="space-y-3" onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="space-y-3">
 
-          <Input
-            isRequired
-            type="text"
-            name="name"
-            label="Name"
-            labelPlacement="outside"
-            placeholder="Enter your name"
-            startContent={<FaUser size={12} className="text-cyan-300 shrink-0" />}
-            radius="lg"
-            variant="bordered"
-            classNames={inputStyles}
-          />
+          {/* Name */}
+          <div className="flex flex-col gap-1.5">
+            <label className={labelClass}>Name</label>
+            <div className={fieldClass}>
+              <FaUser size={12} className="shrink-0 text-cyan-300" />
+              <input name="name" type="text" required placeholder="Enter your name" className={inputClass} />
+            </div>
+          </div>
 
-          <Input
-            isRequired
-            type="email"
-            name="email"
-            label="Email"
-            labelPlacement="outside"
-            placeholder="john@example.com"
-            startContent={<FaEnvelope size={12} className="text-cyan-300 shrink-0" />}
-            radius="lg"
-            variant="bordered"
-            validate={(v) => {
-              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(v))
-                return "Please enter a valid email address";
-              return null;
-            }}
-            classNames={inputStyles}
-          />
+          {/* Email */}
+          <div className="flex flex-col gap-1.5">
+            <label className={labelClass}>Email</label>
+            <div className={fieldClass}>
+              <FaEnvelope size={12} className="shrink-0 text-cyan-300" />
+              <input name="email" type="email" required placeholder="john@example.com" className={inputClass} />
+            </div>
+          </div>
 
-          <Input
-            isRequired
-            type="text"
-            name="image"
-            label="Photo URL"
-            labelPlacement="outside"
-            placeholder="Enter photo url"
-            startContent={<FaImage size={12} className="text-cyan-300 shrink-0" />}
-            radius="lg"
-            variant="bordered"
-            classNames={inputStyles}
-          />
+          {/* Photo URL */}
+          <div className="flex flex-col gap-1.5">
+            <label className={labelClass}>Photo URL</label>
+            <div className={fieldClass}>
+              <FaImage size={12} className="shrink-0 text-cyan-300" />
+              <input name="image" type="text" required placeholder="Enter photo url" className={inputClass} />
+            </div>
+          </div>
 
-          <Input
-            isRequired
-            type="password"
-            name="password"
-            label="Password"
-            labelPlacement="outside"
-            placeholder="Enter your password"
-            startContent={<FaLock size={12} className="text-cyan-300 shrink-0" />}
-            radius="lg"
-            variant="bordered"
-            description="Min 8 chars, 1 uppercase & 1 number"
-            validate={(v) => {
-              if (v.length < 8) return "At least 8 characters required";
-              if (!/[A-Z]/.test(v)) return "Add at least one uppercase letter";
-              if (!/[0-9]/.test(v)) return "Add at least one number";
-              return null;
-            }}
-            classNames={inputStyles}
-          />
-
-          {/* Password Rules */}
-          <div className="flex flex-wrap gap-x-3 text-xs text-slate-400">
-            <p>• Min 6 characters</p>
-            <p>• 1 uppercase</p>
-            <p>• 1 lowercase</p>
+          {/* Password */}
+          <div className="flex flex-col gap-1.5">
+            <label className={labelClass}>Password</label>
+            <div className={fieldClass}>
+              <FaLock size={12} className="shrink-0 text-cyan-300" />
+              <input name="password" type="password" required placeholder="Enter your password" className={inputClass} />
+            </div>
+            <p className="text-xs text-slate-500">• Min 6 characters  • 1 uppercase  • 1 lowercase</p>
           </div>
 
           {/* Register Button */}
-          <Button
+          <button
             type="submit"
-            radius="lg"
-            className="h-11 w-full bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02]"
+            className="h-11 w-full rounded-xl bg-gradient-to-r from-[#2563EB] to-[#06B6D4] text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:scale-[1.02]"
           >
             Register
-          </Button>
-
-        </Form>
+          </button>
+        </form>
 
         {/* Divider */}
         <div className="my-4 flex items-center gap-3">
@@ -165,15 +106,13 @@ const RegisterForm = () => {
         </div>
 
         {/* Google */}
-        <Button
-          radius="lg"
-          variant="bordered"
+        <button
           onClick={handleGoogleRegister}
-          startContent={<FaGoogle size={13} className="text-cyan-300" />}
-          className="h-11 w-full border border-cyan-400/20 bg-[#0F172A]/70 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10"
+          className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-cyan-400/20 bg-[#0F172A]/70 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-500/10"
         >
+          <FaGoogle size={13} className="text-cyan-300" />
           Continue with Google
-        </Button>
+        </button>
 
         <p className="mt-5 text-center text-xs text-slate-400">
           Already have an account?{" "}
@@ -181,7 +120,6 @@ const RegisterForm = () => {
             Login
           </Link>
         </p>
-
       </div>
     </section>
   );

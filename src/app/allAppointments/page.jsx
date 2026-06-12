@@ -1,12 +1,15 @@
+
 import DoctorCard from '@/components/DoctorCard';
 import { Button, Input } from '@heroui/react';
 import { Search } from 'lucide-react';
 
 
+
 const allAppointPage = async () => {
     const res = await fetch('http://localhost:5000/allAppointments');
     const data = await res.json();
-    console.log('all data',data);
+   
+
     return (
         <div className='mx-auto max-w-6xl py-6 '>
             <div className='flex items-center flex-col gap-3'>

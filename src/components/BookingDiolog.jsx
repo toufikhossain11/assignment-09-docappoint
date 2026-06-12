@@ -46,10 +46,11 @@ export function BookingDialog({ doctor, userEmail }) {
 
     try {
       setLoading(true);
-      const res = await authFetch("http://localhost:5000/bookings", {
-        method: "POST",
-        body: JSON.stringify(bookingData),
-      });
+      const res = await fetch("http://localhost:5000/bookings", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(bookingData),
+});
       const data = await res.json();
       if (res.ok) {
         toast.success("Appointment booked successfully!");

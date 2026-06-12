@@ -1,36 +1,154 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🩺 DocAppoint - Doctor Appointment Manager
 
-## Getting Started
+Live Site: https://your-live-link.vercel.app
 
-First, run the development server:
+## 📌 Project Overview
+
+DocAppoint is a modern Doctor Appointment Booking Platform where patients can browse doctors, view detailed information, book appointments, and manage their bookings securely through authentication.
+
+The platform provides a smooth user experience with responsive design, secure authentication, appointment management, and profile customization.
+
+---
+
+## 🚀 Features
+
+- 🔐 Secure Authentication using Better Auth (Email/Password & Google Login)
+- 👨‍⚕️ Browse all available doctors with detailed information
+- ⭐ View Top Rated Doctors on the homepage
+- 📅 Book appointments with preferred doctors
+- ✏️ Update booked appointments without page reload
+- 🗑️ Delete appointments instantly
+- 👤 Manage user profile information
+- 🔍 Search doctors by name
+- 📱 Fully responsive design for Mobile, Tablet, and Desktop
+- ⚡ Loading Spinner and Custom 404 Page
+- 🌙 Modern UI with Glassmorphism Design
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+
+- Next.js 15
+- React.js
+- Tailwind CSS
+- HeroUI
+- React Icons
+- Lucide React
+- React Hot Toast
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB
+- Better Auth
+
+### Deployment
+
+- Vercel (Client)
+- Render/Vercel (Server)
+
+---
+
+## 📂 Main Pages
+
+### 🏠 Home Page
+
+- Hero Banner
+- Top Rated Doctors
+- Additional Healthcare Sections
+
+### 👨‍⚕️ All Doctors Page
+
+- Doctor Listing
+- Search Doctor by Name
+
+### 📄 Doctor Details Page
+
+- Complete Doctor Information
+- Appointment Booking Option
+
+### 📅 Dashboard
+
+#### My Bookings
+
+- View Bookings
+- Update Booking
+- Delete Booking
+
+#### My Profile
+
+- View Profile
+- Update Profile Information
+
+---
+
+## 🔑 Environment Variables
+
+Create a `.env.local` file and add:
+
+```env
+MONGODB_URI=your_mongodb_uri
+
+BETTER_AUTH_SECRET=your_secret
+
+BETTER_AUTH_URL=http://localhost:3000
+
+GOOGLE_CLIENT_ID=your_google_client_id
+
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+## ⚙️ Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/docappoint-client.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🔗 Repository Links
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Client Side
 
-## Learn More
+https://github.com/your-username/docappoint-client
 
-To learn more about Next.js, take a look at the following resources:
+### Server Side
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://github.com/your-username/docappoint-server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🎯 Future Improvements
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Doctor Reviews & Ratings
+- Appointment Status Tracking
+- Email Notifications
+- Theme Toggle System
+- Advanced Filtering & Sorting
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 👨‍💻 Developer
+
+**Toufik Hossain**
+
+Frontend Developer | MERN Stack Developer
+
+Email: toufikhossain546@gmail.com

@@ -67,7 +67,7 @@ export default function Footer() {
         <div className="lg:col-span-1">
           <Link href="/">
             <Image
-              src="/logo.png"
+              src="/Logo.png"
               alt="DocAppoint Logo"
               width={200}
               height={100}

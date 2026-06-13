@@ -29,7 +29,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, { cache: 'no-store',method: 'GET' });
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, { cache: 'no-store' });
         const data = await res.json();
         setBookings(data);
       } catch (err) {

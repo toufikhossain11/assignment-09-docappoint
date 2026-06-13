@@ -16,7 +16,7 @@ const AllAppointPage = () => {
         const url = query
             ? `${process.env.NEXT_PUBLIC_SERVER_URL}/allAppointments?search=${encodeURIComponent(query)}`
             : `${process.env.NEXT_PUBLIC_SERVER_URL}/allAppointments`;
-        const res = await fetch(url, { cache: 'no-store', method: 'GET' });
+        const res = await fetch(url, { cache: 'no-store' });
         const data = await res.json();
         setDoctors(data);
    

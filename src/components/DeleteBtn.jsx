@@ -11,7 +11,7 @@ export function DeleteBtn({ bookingId , onDeleted}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDelete = async () => {
-    const res = await fetch(`http://localhost:5000/bookings/${bookingId}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
       method: "DELETE",
     });
     if (res.ok) {

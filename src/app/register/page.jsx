@@ -4,7 +4,11 @@ import Link from "next/link";
 import { FaGoogle, FaEnvelope, FaLock, FaUser, FaImage } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+
+export const metadata = {
+  title: "Register | DocAppoint",
+};
 
 const RegisterForm = () => {
   const router = useRouter();

@@ -4,6 +4,9 @@ import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { FaGoogle, FaEnvelope, FaLock } from "react-icons/fa";
+import toast from "react-hot-toast";
+
+
 
 const LoginForm = () => {
   const onSubmit = async (e) => {
@@ -14,7 +17,13 @@ const LoginForm = () => {
       email,
       password,
       callbackURL: "/",
-    });
+    },
+  {
+          onRequest: () => {},
+          onSuccess: () => toast.success("Login successful!"),
+          onError: (ctx) => alert(ctx.error.message),
+        }
+  );
     console.log(data, error);
   };
 

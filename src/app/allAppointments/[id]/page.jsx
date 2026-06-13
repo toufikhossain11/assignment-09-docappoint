@@ -3,12 +3,17 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import React from 'react';
 
+export const metadata = {
+  title: "Doctor Details | DocAppoint",
+  description: "View doctor profile and appointment information.",
+};
+
 const DetailsPage =async ({ params }) => {
     const { id } = await params;
     const {token}=await auth.api.getToken({
         headers: await headers()
     });
-    const res =await fetch(`http://localhost:5000/allAppointments/${id}`, {
+    const res =await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/allAppointments/${id}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }

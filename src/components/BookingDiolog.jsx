@@ -4,23 +4,10 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { FaCalendarAlt, FaClock, FaTimes } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { authClient } from "@/lib/auth-client";
+
 
 const inputClass = "h-11 w-full rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-800 placeholder:text-gray-400 outline-none focus:border-cyan-500 transition-all";
 const labelClass = "text-sm font-medium text-gray-700";
-
-// const authFetch = async (url, options = {}) => {
-//   const { data } = await authClient.getSession();
-//   const token = data?.session?.token;
-//   return fetch(url, {
-//     ...options,
-//     headers: {
-//       "Content-Type": "application/json",
-//       ...(token ? { Authorization: `Bearer ${token}` } : {}),
-//       ...options.headers,
-//     },
-//   });
-// };
 
 export function BookingDialog({ doctor, userEmail }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +33,7 @@ export function BookingDialog({ doctor, userEmail }) {
 
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/bookings", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(bookingData),

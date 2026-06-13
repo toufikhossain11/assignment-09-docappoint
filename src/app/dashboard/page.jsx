@@ -9,8 +9,6 @@ import Profile from "@/components/Profile";
 import { DeleteBtn } from "@/components/DeleteBtn";
 import { UpdateBooking } from "@/components/UpdateBookings";
 import { authClient } from "@/lib/auth-client";
-
-// const authFetch = async (url, options = {}) => {
 //   const { data } = await authClient.getSession();
 //   const token = data?.session?.token;
 //  console.log("Auth token:", token);
@@ -32,7 +30,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await fetch('http://localhost:5000/bookings');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`);
         const data = await res.json();
         setBookings(data);
       } catch (err) {

@@ -3,9 +3,12 @@ import DoctorCard from "../DoctorCard";
 
 
 const TopRateDoctor = async () => {
-    const  res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/datas`);
+const  res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/datas`,{ cache: 'no-store' ,
+    method: 'GET',
+
+});
     const data = await res.json();
-    // console.log(data);
+    
     return (
         <div className='max-w-7xl mx-auto py-5 px-4'>
             <div className='flex items-center flex-col gap-3'>

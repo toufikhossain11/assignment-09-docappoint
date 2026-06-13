@@ -34,6 +34,7 @@ export function BookingDialog({ doctor, userEmail }) {
     try {
       setLoading(true);
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, {
+        cache: 'no-store',
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(bookingData),

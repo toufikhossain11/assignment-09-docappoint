@@ -12,6 +12,7 @@ export function DeleteBtn({ bookingId , onDeleted}) {
 
   const handleDelete = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${bookingId}`, {
+      cache: 'no-store',
       method: "DELETE",
     });
     if (res.ok) {

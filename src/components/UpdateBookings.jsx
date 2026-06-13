@@ -23,6 +23,7 @@ export function UpdateBooking({ booking, onUpdated }) {
     try {
       setLoading(true);
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${booking._id}`, {
+        cache: 'no-store',
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedData),

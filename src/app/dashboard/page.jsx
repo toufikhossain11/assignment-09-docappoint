@@ -1,5 +1,4 @@
 
-
 'use client';
 import Image from "next/image";
 import { Card } from "@heroui/react";
@@ -30,7 +29,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/bookings`, { cache: 'no-store',method: 'GET' });
         const data = await res.json();
         setBookings(data);
       } catch (err) {

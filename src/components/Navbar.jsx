@@ -28,7 +28,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = authClient.useSession()
   const user = session?.user;
-  console.log("User in Navbar:", user);
+  // console.log("User in Navbar:", user);
   const handelLogout = async () => {
     await authClient.signOut();
   }

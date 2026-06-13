@@ -38,7 +38,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/">
           <Image
-            src="/logo.png"
+            src="/Logo.png"
             alt="DocAppoint Logo"
             width={200}
             height={100}
